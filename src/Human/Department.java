@@ -24,7 +24,7 @@ public class Department {
               return BigDecimal.valueOf(0);
           }
 
-          //sum all employeesByName.salary  /  count (employeesByName.size())
+
           BigDecimal sum = BigDecimal.valueOf(0);
           for (Map.Entry<String, Employee> entry : employeesByName.entrySet()) {
               sum = sum.add(entry.getValue().getSalary());
