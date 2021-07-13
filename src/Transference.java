@@ -15,8 +15,7 @@ public class Transference {
         try(Scanner scanner = new Scanner(new FileInputStream(filePath))){
 
 
-
-        while (scanner.hasNext()){
+            while (scanner.hasNext()){
            String line= scanner.nextLine();
             String[] split = line.split(";");
             if (split.length!=3){
@@ -47,8 +46,10 @@ public class Transference {
             System.out.println("---");
             System.out.println(department.getValue().getAvgSalary());
         }
-        }catch (Throwable e){
+        } catch (Throwable e) {
+
         System.out.println("Error: " + e.getMessage());
     }
     }
+
 }
