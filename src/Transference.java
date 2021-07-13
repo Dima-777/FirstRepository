@@ -39,12 +39,14 @@ public class Transference {
 
 
         for (Map.Entry<String, Department> department : departments.entrySet()) {
-            System.out.println(department.getKey());
-            //for department.getValue().getEmployeesByName(){
-              //  System.out.println(employee.getKey() + " " + employee.getSalary);
-            //}
-            System.out.println("---");
-            System.out.println(department.getValue().getAvgSalary());
+            System.out.println("department" + department.getKey());
+            for (Map.Entry<String, Employee> employee : department.getValue().getEmployeesByName().entrySet()){
+
+                            System.out.println(employee.getKey() + " " + employee.getValue().getSalary());
+            }
+
+            System.out.println("Avgsalary-"+department.getValue().getAvgSalary());
+            System.out.println("-------");
         }
         } catch (Throwable e) {
 
