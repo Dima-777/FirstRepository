@@ -1,0 +1,9 @@
+dima;Otdel programmirovania;2;4000
+lesha;Otdel testirovania;60000
+sasha;Otdel analitiki;40000
+masha;Otdel programmirovania;500000
+jul;Otdel analitiki;3000
+misha;Otdel testirovania;7000
+oleg;Otdel programmirovania;90000
+olga;Otdel analitiki;30000
+olga;Otdel analitiki;40000

@@ -1,36 +1,47 @@
-package Human;
+package human;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class Department {
-    private Map<String, Employee> employeesByName;
+    private List<Employee> employeeList = new ArrayList<>();
+    private String name;
 
 
-    public Department(Map<String, Employee> employeesByName) {
-        this.employeesByName = employeesByName;
+    public Department(String name) {
+        this.name = name;
     }
 
-    public void addEmployee(Employee employee){
-        this.employeesByName.put(employee.getName(),employee);
+    public void addEmployee(Employee employee) {
+        this.employeeList.add(employee);
     }
 
-    public Map<String, Employee> getEmployeesByName() {
-        return employeesByName;
+
+    public String getName() {
+        return name;
     }
 
-      public BigDecimal getAvgSalary() {
-          if (employeesByName.size() == 0) {
-              return BigDecimal.valueOf(0);
-          }
+    public List<Employee> getEmployeeList() {
+        return employeeList;
+    }
 
 
-          BigDecimal sum = BigDecimal.valueOf(0);
-          for (Map.Entry<String, Employee> entry : employeesByName.entrySet()) {
-              sum = sum.add(entry.getValue().getSalary());
-          }
-          return sum.divide(BigDecimal.valueOf(employeesByName.size()));
+    public BigDecimal getAvgSalary() {
+        if (employeeList.size() == 0) {
+            return BigDecimal.valueOf(0);
+        }
 
 
-      }
+        BigDecimal sum = BigDecimal.valueOf(0);
+        for (Employee employee : employeeList) {
+            sum = sum.add(employee.getSalary());
+        }
+
+        return sum.divide(BigDecimal.valueOf(employeeList.size()), 2, RoundingMode.HALF_UP);
+
+
+    }
 }

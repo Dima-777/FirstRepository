@@ -1,4 +1,4 @@
-package Human;
+package human;
 
 import java.math.BigDecimal;
 
