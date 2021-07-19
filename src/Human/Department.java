@@ -20,6 +20,21 @@ public class Department {
     }
 
 
+    public void removeLastEmployee() {
+        if (this.employeeList.isEmpty()) {
+            return;
+        }
+        this.employeeList.remove(this.employeeList.size() - 1);
+    }
+
+    public void removeEmployee(Employee employee) {
+       int index = this.employeeList.indexOf(employee);
+       if (index==-1){
+           return;
+       }
+       this.employeeList.remove(index);
+    }
+
     public String getName() {
         return name;
     }
@@ -34,14 +49,15 @@ public class Department {
             return BigDecimal.valueOf(0);
         }
 
+        return getSalary().divide(BigDecimal.valueOf(employeeList.size()), 2, RoundingMode.HALF_UP);
+    }
 
+
+    public BigDecimal getSalary() {
         BigDecimal sum = BigDecimal.valueOf(0);
         for (Employee employee : employeeList) {
             sum = sum.add(employee.getSalary());
         }
-
-        return sum.divide(BigDecimal.valueOf(employeeList.size()), 2, RoundingMode.HALF_UP);
-
-
+        return sum;
     }
 }

@@ -4,9 +4,13 @@ import human.Department;
 import human.Employee;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.nio.file.FileSystemException;
 import java.util.*;
+import java.util.function.Function;
 
 public class Departments {
     private Map<String, Department> departments = new HashMap<>();
@@ -24,10 +28,24 @@ public class Departments {
                 }
                 String employeeName = split[0];
                 String departmentName = split[1];
-                BigDecimal salary = BigDecimal.valueOf(Double.parseDouble(split[2]));
+                BigDecimal salary = new BigDecimal(split[2]).setScale(2, RoundingMode.HALF_UP);
+                if (employeeName.isEmpty()) {
+                    System.out.println("employeeName - incorrect");
+                    continue;
+                }
+                if (departmentName.isEmpty()) {
+                    System.out.println("departmentName - incorrect");
+                    continue;
+                }
+                if (salary.compareTo(BigDecimal.valueOf(0)) < 0) {
+                    System.out.println("salary - incorrect");
+                    continue;
 
+                }
                 Employee employee = new Employee(employeeName, salary);
                 Department department = departments.get(departmentName);
+
+
                 if (department == null) {
                     department = new Department(departmentName);
                     department.addEmployee(employee);
@@ -37,7 +55,7 @@ public class Departments {
                 }
             }
 
-        } catch (IOException e) {
+        } catch (FileNotFoundException e) {
 
             System.out.println("Error: " + e.getMessage());
         }
